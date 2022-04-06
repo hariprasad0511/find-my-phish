@@ -29,7 +29,7 @@ class Search extends Component {
   render() {
     return (
       <div id="main">
-        <h1>Welcome to the meal search app</h1>
+        <h1>find-my-Phish</h1>
         <input
           name="text"
           type="text"
