@@ -22,7 +22,11 @@ class Search extends Component {
       })
       .then(jsonData => {
         console.log(jsonData);
-        this.setState({ result: jsonData.message });
+        if (jsonData.message.includes("phishing")) {
+          this.setState({ result: "phishing" });
+        }else {
+          this.setState({ result: "safe" });
+        }
       });
   };
 
@@ -40,7 +44,17 @@ class Search extends Component {
         <button onClick={this.handleSearch}>Search</button>
         {this.state.result ? (
           <div id="result-container">
-            <h2>{this.state.result}</h2>
+            <div id="result-wrapper">
+              {this.state.result === "phishing" ? (
+                <div id="result-phishing">
+                  <p>Phishing Site Found</p>
+                </div>
+              ) : (
+                <div id="result-safe">
+                  <p>Seems to be a Safe Site</p>
+                </div>  
+              )}
+            </div>
           </div>
         ) : (
           <p>Try searching for a URL</p>
